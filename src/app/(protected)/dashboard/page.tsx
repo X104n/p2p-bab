@@ -37,3 +37,5 @@ import { useRouter } from "next/navigation";
       </div>
     );
   };
+
+export default Dashboard;
