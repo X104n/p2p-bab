@@ -1,4 +1,4 @@
-import { Dashboard } from "@/components/dashboard";
+import { Dashboard } from "@/app/(protected)/dashboard/page";
 import { LoginForm } from "@/components/login-form";
 import { getUser } from "@/lib/session";
 
