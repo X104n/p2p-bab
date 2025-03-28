@@ -1,63 +1,62 @@
 body {
-    overflow: hidden; /* Disable scrolling */
-  }
+  overflow: hidden; /* Disable scrolling */
+}
 
 .container {
-    height: 100vh;
-    min-width: 100vw;
-    display: flex;
-    overflow: hidden;
-    flex-direction: column;
+  height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
 }
 
 .img {
-    position: absolute;
-    border-radius: 0%;
-    z-index: -10;
-    width: 100%;
-   
+  position: absolute;
+  border-radius: 0%;
+  z-index: -10;
+  width: 100%;
 }
 
 .header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex: 2;
-    background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 2;
+  background-color: white;
 }
 
 .body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex: 7;
-    overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 7;
+  overflow: hidden;
 }
 
 .footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    flex: 1;
-    background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex: 1;
+  background-color: white;
 }
 
 .status_text {
-    font-size: xx-large;
+  font-size: xx-large;
 }
 
 .small_text {
-    font-size: x-small;
+  font-size: x-small;
 }
 
 .mappoint {
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    aspect-ratio: 100%;
-    border-radius: 50px;
-    background-color: red;
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  aspect-ratio: 100%;
+  border-radius: 50px;
+  background-color: red;
 }
