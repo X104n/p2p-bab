@@ -4,7 +4,7 @@ import Image from 'next/image';
 import {useEffect, useId, useState} from 'react';
 import './style.css';
 
-const initial_time = 600; //600000
+const initial_time = 600000
 const step_size = 10;
 
 const positions = [
@@ -37,26 +37,27 @@ export default function Grapher() {
 
     return (
         <div className="container">
-            <Image className='img'
-                src="/map.jpeg"
-                alt="A map of middle earth?"
-                width={1500}
-                height={1300}
-            />
             <div className="header" suppressHydrationWarning>
                 {prvUpdate}
                 <p className='status_text'>I would'nt walk in that direction...</p>
                 <p className='small_text'>I’ll check again in {nxtUpdate} ms</p>
             </div>
             <div className="body">
-                <svg width="100%" height="100%" viewBox="0 0 100 100">
-                    
+                <svg width="100%" height="100%" viewBox="0 0 100% 100%">
+                    <image
+                        href="/map.jpeg" // Path to your image in the public directory
+                        x="0"
+                        y="0"
+                        width="100%"
+                        height="100%"
+                        preserveAspectRatio="xMidYMid slice" // Adjusts how the image is scaled
+                    />
                     {positions.map((pos,i) => {
                             if (i == positions.length-1) return;
-                            return <line key={useId()} strokeWidth={1} stroke='red' x1={pos.x} x2={positions[(i+1)%positions.length].x} y1={pos.y} y2={positions[(i+1)%positions.length].y} ></line>
+                            return <line key={useId()} strokeWidth={1} stroke='red' x1={pos.x + '%'} x2={positions[(i+1)%positions.length].x + '%'} y1={pos.y + '%'} y2={positions[(i+1)%positions.length].y  + '%'} ></line>
                         })
                     }
-                    {positions.map((pos) => <circle key={useId()} fill='red' r={2} cx={pos.x} cy={pos.y}></circle> )}
+                    {positions.map((pos) => <circle key={useId()} fill='red' r={2} cx={pos.x + '%'} cy={pos.y + '%'}></circle> )}
                 </svg>
                
             </div>
