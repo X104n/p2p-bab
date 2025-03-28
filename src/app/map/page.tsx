@@ -1,5 +1,4 @@
 'use client';
-import Link from 'next/link';
 import Image from 'next/image';
 import {useEffect, useId, useState} from 'react';
 import './style.css';
