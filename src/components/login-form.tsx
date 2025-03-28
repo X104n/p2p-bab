@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
- import Image from "next/image";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
  
  // Login Form Component
- export const LoginForm: React.FC = () => {
+export const LoginForm: React.FC = () => {
     const [email, setEmail] = useState('');
     const [error, setError] = useState('');
     const router = useRouter();
@@ -61,4 +61,4 @@ import { useRouter } from "next/navigation";
         </div>
       </div>
     );
-  };
+};
