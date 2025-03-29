@@ -99,8 +99,8 @@ export default function Map() {
 
   return (
     <div className="container">
-            {/* Background Video */}
-            <video
+      {/* Background Video */}
+      <video
         className="absolute flex top-0 left-0 w-full h-full object-cover"
         autoPlay
         loop
@@ -158,7 +158,16 @@ export default function Map() {
               height="10%"
             />
 
-            <text x="50%" y="5%" fontSize={2} textAnchor="middle" dominantBaseline="middle" opacity={0.5}>[code]</text>
+            <text
+              x="50%"
+              y="5%"
+              fontSize={2}
+              textAnchor="middle"
+              dominantBaseline="middle"
+              opacity={0.5}
+            >
+              [code]
+            </text>
           </svg>
         </div>
         <div className="direction_container">
