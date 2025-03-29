@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import "./style.css";
 
 const step_size = 1000;
@@ -10,7 +10,11 @@ interface MapData {
   coordinates: { x: number; y: number };
 }
 
-export default function Map() {
+interface GameMapClientProps {
+  code?: string;
+}
+
+export default function GameMapClient({ code }: GameMapClientProps) {
   const [mapdata, setMapdata] = useState<MapData>({
     hate: "",
     feedback: "Start walking!",
@@ -29,20 +33,23 @@ export default function Map() {
   ]);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  const fetchMapData = async () => {
+  // Use useCallback to memoize these functions to prevent unnecessary re-renders
+  const fetchMapData = useCallback(async () => {
     try {
-      const response = await fetch("/api/map");
+      // Use the code parameter if provided
+      const url = code ? `/api/map?code=${code}` : "/api/map";
+      const response = await fetch(url);
       if (!response.ok) {
-        throw new Error("Failed to fetch profile data");
+        throw new Error("Failed to fetch map data");
       }
       const data = await response.json();
       setMapdata(data);
     } catch (err) {
       console.error("Error fetching map data:", err);
     }
-  };
+  }, [code]); // Depend on the code prop
 
-  const updateDimensions = () => {
+  const updateDimensions = useCallback(() => {
     if (!containerRef.current) return;
 
     setGlobalpos({
@@ -55,7 +62,7 @@ export default function Map() {
         containerRef.current.offsetTop -
         60,
     });
-  };
+  }, [mapdata.coordinates.x, mapdata.coordinates.y]); // Depend on the coordinates
 
   // Effect to fetch map data and set up the interval
   useEffect(() => {
@@ -80,7 +87,7 @@ export default function Map() {
       window.removeEventListener("resize", handleResize);
       clearInterval(int);
     };
-  }, []); // Empty dependency array to run once on mount
+  }, [fetchMapData, updateDimensions]); // Include the memoized functions
 
   // Effect to manage the map data updates based on the timer
   useEffect(() => {
@@ -95,7 +102,13 @@ export default function Map() {
       setShow(true);
       setTimeout(() => setShow(false), step_size * 3); // Show feedback for 3 seconds
     });
-  }, [nxtUpdate, mapdata.coordinates, mapdata.feedback]);
+  }, [
+    nxtUpdate,
+    mapdata.coordinates,
+    mapdata.feedback,
+    fetchMapData,
+    updateDimensions,
+  ]);
 
   return (
     <div className="container">
@@ -176,7 +189,7 @@ export default function Map() {
       <div className="header" suppressHydrationWarning>
         <p className="status_text">{theFeedback}</p>
         <p className="small_text">
-          I’ll check again in {nxtUpdate / 1000} seconds..
+          I'll check again in {nxtUpdate / 1000} seconds..
         </p>
       </div>
     </div>

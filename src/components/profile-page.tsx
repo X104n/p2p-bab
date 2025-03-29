@@ -105,7 +105,8 @@ export default function ProfilePage() {
                     fill
                     className="object-contain"
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = "/ranks/placeholder.png";
+                      (e.target as HTMLImageElement).src =
+                        "/ranks/placeholder.png";
                     }}
                   />
                 </div>

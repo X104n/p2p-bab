@@ -63,7 +63,7 @@ export default function Dashboard() {
   const getButtonText = (status: string) => {
     switch (status) {
       case "Your turn":
-        return "Take Turn";
+        return "Play Now";
       case "Active":
         return "Play Now";
       case "Waiting":
@@ -136,8 +136,8 @@ export default function Dashboard() {
                         game.status === "Active"
                           ? "bg-green-100 text-green-800"
                           : game.status === "Your turn"
-                          ? "bg-yellow-100 text-yellow-800"
-                          : "bg-gray-100 text-black"
+                            ? "bg-yellow-100 text-yellow-800"
+                            : "bg-gray-100 text-black"
                       }`}
                     >
                       {game.status}
