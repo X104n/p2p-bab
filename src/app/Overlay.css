@@ -11,12 +11,13 @@
   z-index: 9999; /* Ensure it's on top of other elements */
   pointer-events: none; /* Allow click events to pass through to elements below */
   animation: fadeIn 0.5s forwards; /* Animation for fade in */
+  overflow: hidden;
 }
 
 .content {
   color: white; /* Text color */
   text-align: center;
-  pointer-events: none; /* Prevent interaction with the overlay content */
+  pointer-events: none; 
 }
 
 /* Keyframes for fade in animation */

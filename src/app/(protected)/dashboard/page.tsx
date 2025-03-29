@@ -105,7 +105,7 @@ export default function Dashboard() {
       className="min-h-screen p-4 bg-cover bg-center"
       style={{ backgroundImage: "url('/alfababb.jpg')" }}
     >
-      <div className="max-w-4xl mx-auto mt-80">
+      <div className="max-w-4xl mx-auto mt-50">
         {/* Your Babb Lobbies Section */}
         <div className="bg-white/70 rounded-lg shadow-md p-4 mb-4 max-w-3xl mx-auto">
           <h2 className="text-xl font-semibold mb-4 text-black flex justify-center pt-4">
