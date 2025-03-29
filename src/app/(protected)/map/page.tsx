@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useId, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./style.css";
 
 const step_size = 1000;
