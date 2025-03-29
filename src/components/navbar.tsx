@@ -31,12 +31,10 @@ export default function Navbar({
       <div className="flex justify-between items-center">
         {/* Left side - Brand and navigation */}
         <div className="flex items-center space-x-4">
-          <span className="font-bold text-2xl text-black">Bable Royal</span>
-          <Link
-            href="/dashboard"
-            className="hover:text-blue-500 text-lg text-black font-medium"
-          >
-            Dashboard
+          <Link href="/dashboard">
+            <span className="font-bold text-2xl text-black cursor-pointer">
+              Bable Royal
+            </span>
           </Link>
           <Link
             href="/map"
@@ -84,7 +82,6 @@ export default function Navbar({
                 className="object-contain"
               />
               <span className="text-black font-medium text-sm pl-10">
-                {" "}
                 Cash lost ${lostMoney.toLocaleString()}
               </span>
             </div>

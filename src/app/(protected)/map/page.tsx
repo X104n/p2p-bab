@@ -146,6 +146,8 @@ export default function Map() {
               width="10%"
               height="10%"
             />
+
+            <text x="50%" y="5%" fontSize={2} textAnchor="middle" dominantBaseline="middle" opacity={0.5}>[code]</text>
           </svg>
         </div>
         <div className="direction_container">

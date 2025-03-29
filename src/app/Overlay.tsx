@@ -25,16 +25,37 @@ const Overlay = () => {
 
       {/* Your animated content goes here */}
       <div className="content">
-        <FlyingImage imageSrc="/drunk.gif" />
-        <FlyingImage imageSrc="/bab.png" />
-        <FlyingImage imageSrc="/drunk.gif" />
-        <FlyingImage imageSrc="/bab.png" />
-        <FlyingImage imageSrc="/drunk.gif" />
-        <FlyingImage imageSrc="/bab.png" />
-        <FlyingImage imageSrc="/drunk.gif" />
-        <FlyingImage imageSrc="/bab.png" />
-        <FlyingImage imageSrc="/drunk.gif" />
-        <FlyingImage imageSrc="/bab.png" />
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        
       </div>
     </div>,
     document.body // Use the body element as the portal destination
