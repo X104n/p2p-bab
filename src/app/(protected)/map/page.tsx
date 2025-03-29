@@ -197,10 +197,10 @@ export default function Map() {
 
       <div className="header" suppressHydrationWarning>
         <div className="status_container">
-            <p className="status_text">{theFeedback}</p>
-            <p className="small_text">
+          <p className="status_text">{theFeedback}</p>
+          <p className="small_text">
             I’ll check again in {nxtUpdate / 1000} seconds..
-            </p>
+          </p>
         </div>
       </div>
     </div>

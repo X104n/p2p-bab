@@ -3,8 +3,8 @@ body {
 }
 
 .container {
-    padding-top: 10%;
-    position: relative;
+  padding-top: 10%;
+  position: relative;
   height: 100vh;
   min-width: 100vw;
   display: flex;
@@ -103,15 +103,14 @@ body {
   color: black;
 }
 
-
 .status_container {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    border-radius: 10px;
-    background-color: #f9f9f99e;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    width: 40%;
-  }
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #f9f9f99e;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  width: 40%;
+}
