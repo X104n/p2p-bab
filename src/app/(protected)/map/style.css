@@ -24,7 +24,8 @@ body {
   justify-content: start;
   align-items: center;
   height: 30%;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
+  z-index: 11;
 }
 
 .body {
@@ -34,7 +35,8 @@ body {
   align-items: center;
   height: 70%;
   overflow: hidden;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
+  z-index: 10;
 }
 
 .footer {
@@ -45,6 +47,7 @@ body {
   flex: 1;
   background-color: white;
   color: black;
+  z-index: 11;
 }
 
 .status_text {

@@ -99,12 +99,23 @@ export default function Map() {
 
   return (
     <div className="container">
+            {/* Background Video */}
+            <video
+        className="absolute flex top-0 left-0 w-full h-full object-cover"
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source src="/jesus_dance.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       <div className="body">
         <div className="direction_container">
           <p
             style={{
               transform: "rotate(-90deg)",
-              color: "black",
+              color: "white",
               fontSize: "x-large",
             }}
           >
@@ -154,7 +165,7 @@ export default function Map() {
           <p
             style={{
               transform: "rotate(90deg)",
-              color: "black",
+              color: "white",
               fontSize: "x-large",
             }}
           >
