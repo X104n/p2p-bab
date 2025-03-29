@@ -6,12 +6,12 @@ import Image from "next/image";
 
 interface NavbarProps {
   user: string;
-  rankLevel: number;
-  wins: number;
-  lostMoney: number;
+  rankLevel?: number;
+  wins?: number;
+  lostMoney?: number;
 }
 
-export default function Navbar({ user, rankLevel, wins, lostMoney = 0 }: NavbarProps) {
+export default function Navbar({ user, rankLevel = 5, wins = 3, lostMoney = 500 }: NavbarProps) {
   const router = useRouter();
 
   const handleLogout = async () => {
@@ -27,16 +27,10 @@ export default function Navbar({ user, rankLevel, wins, lostMoney = 0 }: NavbarP
         {/* Left side - Brand and navigation */}
         <div className="flex items-center space-x-4">
           <span className="font-bold text-2xl text-black">Bable Royal</span>
-          <Link
-            href="/dashboard"
-            className="hover:text-blue-500 text-lg text-black font-medium"
-          >
+          <Link href="/dashboard" className="hover:text-blue-500 text-lg text-black font-medium">
             Dashboard
           </Link>
-          <Link
-            href="/map"
-            className="hover:text-blue-500 text-lg text-black font-medium"
-          >
+          <Link href="/map" className="hover:text-blue-500 text-lg text-black font-medium">
             Map
           </Link>
         </div>
@@ -50,46 +44,48 @@ export default function Navbar({ user, rankLevel, wins, lostMoney = 0 }: NavbarP
             Give Up
           </button>
         </div>
-        
+
         {/* Right side - Metrics and Profile */}
         <div className="flex items-center space-x-4">
+          {/* Metrics container: rank, wins, and money displayed side by side */}
           <div className="flex items-center space-x-4">
+          <span className="text-black font-medium text-sm">Your Rank {rankLevel}</span>
             <div className="flex items-center space-x-1">
               <Image 
-                src="/images/rank-icon.png" 
-                alt="Rank Icon" 
-                width={20} 
-                height={20} 
-                className="object-contain"
+              src="/chall_rank.png" 
+              alt="Rank Icon" 
+              width={50} 
+              height={50} 
+              className="object-contain"
               />
-              <span className="text-black font-medium text-sm">{rankLevel}</span>
+              <span className="text-black font-medium text-sm pl-10">Wins {wins}</span>
             </div>
             <div className="flex items-center space-x-1">
               <Image 
-                src="/images/wins-icon.png" 
-                alt="Wins Icon" 
-                width={20} 
-                height={20} 
-                className="object-contain"
+              src="/crown.png" 
+              alt="Wins Icon" 
+              width={50} 
+              height={50} 
+              className="object-contain"
               />
-              <span className="text-black font-medium text-sm">{wins}</span>
-            </div>
-            <div className="flex items-center space-x-1">
-              <Image 
-                src="/images/money-icon.png" 
-                alt="Money Icon" 
-                width={20} 
-                height={20} 
-                className="object-contain"
-              />
-              <span className="text-black font-medium text-sm">
+              <span className="text-black font-medium text-sm pl-10"> Cash lost 
                 ${lostMoney.toLocaleString()}
               </span>
             </div>
+            <div className="flex items-center space-x-1 pr-10">
+              <Image 
+                src="/money.png" 
+                alt="Money Icon" 
+                width={50} 
+                height={50} 
+                className="object-contain"
+              />
+              
+            </div>
           </div>
           <span className="text-black font-medium text-lg">Hi, {user}</span>
-          <Link
-            href="/profile"
+          <Link 
+            href="/profile" 
             className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors text-lg"
           >
             Profile
@@ -99,4 +95,3 @@ export default function Navbar({ user, rankLevel, wins, lostMoney = 0 }: NavbarP
     </nav>
   );
 }
-
