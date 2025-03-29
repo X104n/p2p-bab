@@ -27,7 +27,7 @@ export default function Navbar({
   };
 
   return (
-    <nav className="bg-white/100 backdrop-blur-sm shadow-md py-6 px-8 h-24 z-50">
+    <nav className="absolute shadow-md py-6 px-8 h-24 w-full z-50" style={{ backgroundColor: 'rgba(255, 255, 255, 0.7)' }}>
       <div className="flex justify-between items-center">
         {/* Left side - Brand and navigation */}
         <div className="flex items-center space-x-4">
