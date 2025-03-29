@@ -2,124 +2,182 @@
 import { useEffect, useId, useState, useRef } from "react";
 import "./style.css";
 
-const initial_time = 600000;
-const step_size = 10;
+const step_size = 1000;
 
-const positions = [
-  { x: 50, y: 50 },
-  { x: 50, y: 10 },
-  { x: 10, y: 80 },
-];
+interface MapData {
+  hate: string;
+  feedback: string;
+  coordinates: { x: number; y: number };
+}
 
-export default function Grapher() {
-  const [nxtUpdate, setNxtUpdate] = useState<number>(initial_time);
-  const [globalX, setGlobalX] = useState<number>(0);
+export default function Map() {
+  const [mapdata, setMapdata] = useState<MapData>({
+    hate: "",
+    feedback: "Start walking!",
+    coordinates: { x: 50, y: 50 },
+  });
+
+  const [nxtUpdate, setNxtUpdate] = useState<number>(step_size * 10);
+  const [globalpos, setGlobalpos] = useState<{ x: number; y: number }>({
+    x: 0,
+    y: 0,
+  });
   const [show, setShow] = useState<boolean>(false);
-  const containerRef = useRef<HTMLDivElement | null>(null); // Explicitly type the ref
+  const [theFeedback, setTheFeedback] = useState<string>("Start walking!");
+  const [positions, setPositions] = useState<{ x: number; y: number }[]>([
+    { x: 50, y: 50 },
+  ]);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
-  // Effect to update the width and height of the window
+  const fetchMapData = async () => {
+    try {
+      const response = await fetch("/api/map");
+      if (!response.ok) {
+        throw new Error("Failed to fetch profile data");
+      }
+      const data = await response.json();
+      setMapdata(data);
+    } catch (err) {
+      console.error("Error fetching map data:", err);
+    }
+  };
+
+  const updateDimensions = () => {
+    if (!containerRef.current) return;
+
+    setGlobalpos({
+      x:
+        (mapdata.coordinates.x / 100) * containerRef.current.offsetWidth +
+        containerRef.current.offsetLeft +
+        30,
+      y:
+        (mapdata.coordinates.y / 100) * containerRef.current.offsetHeight +
+        containerRef.current.offsetTop -
+        60,
+    });
+  };
+
+  // Effect to fetch map data and set up the interval
   useEffect(() => {
-    // Function to update the dimensions
-    const updateDimensions = () => {
-      const containerWidth = containerRef.current
-        ? containerRef.current.offsetWidth
-        : 0;
-      const containerLeft = containerRef.current
-        ? containerRef.current.offsetLeft
-        : 0;
-      setGlobalX(() =>
-        positions.length > 0
-          ? (positions[positions.length - 1].x / 100) * containerWidth +
-            containerLeft +
-            30
-          : 0,
-      );
-    };
+    fetchMapData();
 
     const int = setInterval(() => {
-      setNxtUpdate((prev) => prev - step_size);
-    }, 10);
+      setNxtUpdate((prev) => {
+        if (prev <= 0) {
+          clearInterval(int);
+          return 0; // Prevent negative time
+        }
+        return prev - step_size;
+      });
+    }, step_size);
 
-    const int2 = setInterval(() => {
-      setShow(() => true);
-      setTimeout(() => {
-        setShow(() => false);
-      }, 5000);
-    }, 10000);
+    const handleResize = () => updateDimensions();
+    window.addEventListener("resize", handleResize);
 
-    updateDimensions();
-    window.addEventListener("resize", updateDimensions);
+    updateDimensions(); // Set initial dimensions
 
-    // Cleanup function to remove the event listener
     return () => {
-      window.removeEventListener("resize", updateDimensions);
+      window.removeEventListener("resize", handleResize);
       clearInterval(int);
-      clearInterval(int2);
     };
-  }, []);
+  }, []); // Empty dependency array to run once on mount
+
+  // Effect to manage the map data updates based on the timer
+  useEffect(() => {
+    if (nxtUpdate > 0) return;
+
+    fetchMapData().then(() => {
+      setPositions((prev) => [...prev, mapdata.coordinates]);
+      setTheFeedback(mapdata.feedback);
+      setNxtUpdate(step_size * 10); // Resetting the timer
+      updateDimensions();
+
+      setShow(true);
+      setTimeout(() => setShow(false), step_size * 3); // Show feedback for 3 seconds
+    });
+  }, [nxtUpdate, mapdata.coordinates, mapdata.feedback]);
 
   return (
     <div className="container">
       <div className="body">
         <div className="direction_container">
-          <p style={{ transform: "rotate(-90deg)" }}>NORTH</p>
+          <p
+            style={{
+              transform: "rotate(-90deg)",
+              color: "black",
+              fontSize: "x-large",
+            }}
+          >
+            NORTH
+          </p>
         </div>
         <div className="map_container" ref={containerRef}>
-          <svg width="100%" height="100%" viewBox="0 0 100% 100%">
+          <svg width="100%" height="100%" viewBox="0 0 100 100">
             {positions.map((pos, i) => {
-              if (i == positions.length - 1) return;
+              if (i === positions.length - 1) return null; // Skip rendering the last position's line
+
               return (
                 <line
-                  key={useId()}
+                  key={`${i}-${pos.x}-${pos.y}`} // Use a combination of index and coordinates as the key
                   strokeWidth={1}
                   stroke="black"
-                  x1={pos.x + "%"}
-                  x2={positions[(i + 1) % positions.length].x + "%"}
-                  y1={pos.y + "%"}
-                  y2={positions[(i + 1) % positions.length].y + "%"}
-                ></line>
+                  x1={`${pos.x}%`} // Set the starting x position
+                  x2={`${positions[i + 1].x}%`} // Set the ending x position
+                  y1={`${pos.y}%`} // Set the starting y position
+                  y2={`${positions[i + 1].y}%`} // Set the ending y position
+                />
               );
             })}
-            {positions.map((pos) => (
+
+            {positions.map((pos, i) => (
               <circle
-                key={useId()}
+                key={`circle-${i}-${pos.x}-${pos.y}`} // Key for each circle
                 fill="black"
-                r={2}
-                cx={pos.x + "%"}
-                cy={pos.y + "%"}
-              ></circle>
-            ))}
-            {
-              <image
-                href="/drunk.gif" // Path to your image in the public directory
-                x={positions[positions.length - 1].x - 5 + "%"}
-                y={positions[positions.length - 1].y - 5 + "%"}
-                width="10%"
-                height="10%"
+                r={2} // Radius of the circles
+                cx={`${pos.x}%`} // X position in percentage
+                cy={`${pos.y}%`} // Y position in percentage
               />
-            }
+            ))}
+
+            <image
+              href="/drunk.gif" // Path to your image in the public directory
+              x={`${positions[positions.length - 1].x - 5}%`}
+              y={`${positions[positions.length - 1].y - 5}%`}
+              width="10%"
+              height="10%"
+            />
           </svg>
         </div>
         <div className="direction_container">
-          <p style={{ transform: "rotate(90deg)" }}>SOUTH</p>
+          <p
+            style={{
+              transform: "rotate(90deg)",
+              color: "black",
+              fontSize: "x-large",
+            }}
+          >
+            SOUTH
+          </p>
         </div>
 
-        <div
-          className="chat_bubble"
-          hidden={!show}
-          style={{
-            left: globalX + "px",
-            bottom: 35 + positions[positions.length - 1].y * 0.1 + "%",
-          }}
-        >
-          {" "}
-          user_123 just got warmer...{" "}
-        </div>
+        {show && (
+          <div
+            className="chat_bubble"
+            style={{
+              left: `${globalpos.x}px`,
+              top: `${globalpos.y}px`,
+            }}
+          >
+            {mapdata.hate}
+          </div>
+        )}
       </div>
 
       <div className="header" suppressHydrationWarning>
-        <p className="status_text">I would'nt walk in that direction...</p>
-        <p className="small_text">I’ll check again in {nxtUpdate} ms</p>
+        <p className="status_text">{theFeedback}</p>
+        <p className="small_text">
+          I’ll check again in {nxtUpdate / 1000} seconds..
+        </p>
       </div>
     </div>
   );

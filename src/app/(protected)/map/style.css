@@ -20,9 +20,9 @@ body {
 .header {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
-  flex: 2;
+  height: 30%;
   background-color: white;
 }
 
@@ -31,8 +31,9 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  flex: 7;
+  height: 70%;
   overflow: hidden;
+  background-color: white;
 }
 
 .footer {
@@ -42,15 +43,18 @@ body {
   align-items: center;
   flex: 1;
   background-color: white;
+  color: black;
 }
 
 .status_text {
   font-size: xx-large;
+  color: black;
 }
 
 .small_text {
   text-align: center;
-  font-size: x-small;
+  font-size: medium;
+  color: black;
 }
 
 .mappoint {
@@ -85,18 +89,11 @@ body {
 .chat_bubble {
   position: absolute;
   text-align: center;
-  font-size: x-small;
-  background-color: rgba(0, 255, 140, 0.205);
+  font-size: medium;
+  background-color: rgba(0, 255, 140, 0.9);
   padding: 10px;
   width: 20vh;
   border-radius: 10px;
   border-bottom-left-radius: 0px;
+  color: black;
 }
-
-/*
-      <div className="footer">
-        <p className="small_text">user_123 just got warmer...</p>
-        <p className="small_text">One of you just made an amazing deal!</p>
-        <p className="small_text">11 of you did not... hurry up!</p>
-      </div>
-*/
