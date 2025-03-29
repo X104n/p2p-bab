@@ -1,28 +1,28 @@
 .container {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden; /* Prevent overflow */
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* Prevent overflow */
 }
 
 .flying-image {
-    position: absolute;
-    width: 100px; /* Adjust based on your image size */
-    height: auto; /* Maintain aspect ratio */
-    transition: all 10s ease; /* Smooth transition during position change */
+  position: absolute;
+  width: 100px; /* Adjust based on your image size */
+  height: auto; /* Maintain aspect ratio */
+  transition: all 10s ease; /* Smooth transition during position change */
 }
 
 .rotating {
-    animation: rotate 2s linear infinite; /* Rotates continuously */
+  animation: rotate 2s linear infinite; /* Rotates continuously */
 }
 
 @keyframes rotate {
-    from {
-        transform: rotate(0deg); /* Starting from 0 degrees */
-    }
-    to {
-        transform: rotate(360deg); /* Complete a full rotation */
-    }
+  from {
+    transform: rotate(0deg); /* Starting from 0 degrees */
+  }
+  to {
+    transform: rotate(360deg); /* Complete a full rotation */
+  }
 }
