@@ -63,7 +63,7 @@ export default function Dashboard() {
   const getButtonText = (status: string) => {
     switch (status) {
       case "Your turn":
-        return "Take Turn";
+        return "Play Now";
       case "Active":
         return "Play Now";
       case "Waiting":
