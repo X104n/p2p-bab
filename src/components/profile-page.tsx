@@ -22,7 +22,9 @@ export default function ProfilePage() {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [showProfile, setShowProfile] = useState(false);
 
+  // Fetch profile data
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
@@ -44,6 +46,14 @@ export default function ProfilePage() {
     };
 
     fetchProfileData();
+  }, []);
+
+  // Trigger slide-in animation after 5 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowProfile(true);
+    }, 500);
+    return () => clearTimeout(timer);
   }, []);
 
   if (loading) {
@@ -78,7 +88,11 @@ export default function ProfilePage() {
 
       {/* Transparent Overlay Container */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen p-4">
-        <div className="bg-white/20 backdrop-blur-sm shadow-lg rounded-xl p-8 w-full max-w-2xl">
+        <div
+          className={`bg-white/10 backdrop-blur-sm shadow-lg rounded-xl p-8 w-full max-w-2xl transform transition-all duration-6000 ${
+            showProfile ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
+          }`}
+        >
           <h1 className="text-3xl font-bold text-center mb-8 text-white">
             Player Profile
           </h1>

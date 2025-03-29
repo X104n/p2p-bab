@@ -17,21 +17,27 @@ const Overlay = () => {
 
   return ReactDOM.createPortal(
     <div className="overlay">
+      {/* Background audio */}
+      <audio autoPlay loop className="hidden">
+        <source src="/Locked In Alien (TikTok) - Scissorhands - Trekkrrholymountain.mp3" type="audio/mp3" />
+        Your browser does not support the audio element.
+      </audio>
+
       {/* Your animated content goes here */}
       <div className="content">
-        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
-        <FlyingImage imageSrc="/bab.png"></FlyingImage>
-        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
-        <FlyingImage imageSrc="/bab.png"></FlyingImage>
-        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
-        <FlyingImage imageSrc="/bab.png"></FlyingImage>
-        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
-        <FlyingImage imageSrc="/bab.png"></FlyingImage>
-        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
-        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif" />
+        <FlyingImage imageSrc="/bab.png" />
+        <FlyingImage imageSrc="/drunk.gif" />
+        <FlyingImage imageSrc="/bab.png" />
+        <FlyingImage imageSrc="/drunk.gif" />
+        <FlyingImage imageSrc="/bab.png" />
+        <FlyingImage imageSrc="/drunk.gif" />
+        <FlyingImage imageSrc="/bab.png" />
+        <FlyingImage imageSrc="/drunk.gif" />
+        <FlyingImage imageSrc="/bab.png" />
       </div>
     </div>,
-    document.body, // Use the body element as the portal destination
+    document.body // Use the body element as the portal destination
   );
 };
 
