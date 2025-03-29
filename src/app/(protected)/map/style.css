@@ -20,9 +20,9 @@ body {
 .header {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
-  flex: 2;
+  height: 30%;
   background-color: white;
 }
 
@@ -31,7 +31,7 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  flex: 7;
+  height: 70%;
   overflow: hidden;
 }
 
@@ -95,11 +95,3 @@ body {
     border-bottom-left-radius: 0px;
 }
 
-
-/*
-      <div className="footer">
-        <p className="small_text">user_123 just got warmer...</p>
-        <p className="small_text">One of you just made an amazing deal!</p>
-        <p className="small_text">11 of you did not... hurry up!</p>
-      </div>
-*/
