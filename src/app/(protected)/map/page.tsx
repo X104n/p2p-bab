@@ -90,7 +90,7 @@ export default function Map() {
         <div className="container">
             <div className="body">
                 <div className="direction_container">
-                    <p style={{ transform: 'rotate(-90deg)', color:'black', fontSize:'medium' }}>NORTH</p>
+                    <p style={{ transform: 'rotate(-90deg)', color:'black', fontSize:'x-large' }}>NORTH</p>
                 </div>
                 <div className="map_container" ref={containerRef}>
                     <svg width="100%" height="100%" viewBox="0 0 100 100">
@@ -130,7 +130,7 @@ export default function Map() {
                     </svg>
                 </div>
                 <div className="direction_container">
-                    <p style={{ transform: 'rotate(90deg)', color:'black', fontSize:'medium'}}>SOUTH</p>
+                    <p style={{ transform: 'rotate(90deg)', color:'black', fontSize:'x-large'}}>SOUTH</p>
                 </div>
 
                 {show && (
