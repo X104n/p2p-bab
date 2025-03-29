@@ -53,7 +53,7 @@ body {
 
 .small_text {
   text-align: center;
-  font-size:medium;
+  font-size: medium;
   color: black;
 }
 
@@ -89,7 +89,7 @@ body {
 .chat_bubble {
   position: absolute;
   text-align: center;
-  font-size:medium;
+  font-size: medium;
   background-color: rgba(0, 255, 140, 0.9);
   padding: 10px;
   width: 20vh;
@@ -97,4 +97,3 @@ body {
   border-bottom-left-radius: 0px;
   color: black;
 }
-
