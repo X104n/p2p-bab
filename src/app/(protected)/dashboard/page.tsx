@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { Game } from "@/lib/game-store";
 
 export default function Dashboard() {
@@ -103,7 +104,7 @@ export default function Dashboard() {
       style={{ backgroundImage: "url('/alfababb.jpg')" }}
     >
       <div className="max-w-4xl mx-auto">
-        {/* Ongoing Babb Games Section */}
+        {/* Your Babb Games Section */}
         <div className="bg-white rounded-lg shadow-md p-4 mb-4 max-w-3xl mx-auto">
           <h2 className="text-xl font-semibold mb-4 text-black flex justify-center pt-4">
             Your Babb Games
@@ -170,17 +171,22 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Available Games to Join */}
-        {availableGames.length > 0 && (
-          <div className="bg-white rounded-lg shadow-md p-4 mb-4 max-w-3xl mx-auto">
-            <h2 className="text-xl font-semibold mb-4 text-black flex justify-center pt-4">
-              Available Games to Join
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        {/* Available Babb Stores Section */}
+        <div className="bg-white rounded-lg shadow-md p-4 max-w-3xl mx-auto">
+          <h2 className="text-xl font-semibold mb-4 text-black flex justify-center pt-4">
+            Available Babb Stores
+          </h2>
+          
+          {loading ? (
+            <p className="text-center py-4 text-black">Loading available games...</p>
+          ) : availableGames.length === 0 ? (
+            <p className="text-center py-4 text-black">No available games to join at the moment.</p>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
               {availableGames.map((game) => (
                 <div
                   key={game.id}
-                  className="bg-gray-50 rounded-lg shadow p-2 border border-gray-200 hover:shadow-lg transition-shadow h-32"
+                  className="bg-gray-50 rounded-lg shadow p-2 border border-gray-200 hover:shadow-lg transition-shadow h-36"
                 >
                   <div className="flex justify-between items-start mb-1">
                     <h3 className="text-xs font-medium text-blue-700">
@@ -214,37 +220,38 @@ export default function Dashboard() {
                 </div>
               ))}
             </div>
-          </div>
-        )}
-
-        {/* Available Babb Stores Section */}
-        <div className="bg-white rounded-lg shadow-md p-4 max-w-3xl mx-auto">
-          <h2 className="text-xl font-semibold mb-4 text-black flex justify-center pt-4">
-            Available Babb Stores
-          </h2>
+          )}
+          
+          {/* Store images in lower section only when no available games or in addition to games */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {/* Store Window 1 */}
             <div className="relative bg-gray-50 rounded-lg shadow border border-gray-200 transition-transform duration-300 hover:scale-105 overflow-hidden h-32 flex items-center justify-center">
-              <img
+              <Image
                 src="/babbis1.jpg"
                 alt="Store 1"
-                className="object-cover w-full h-full"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 33vw"
               />
             </div>
             {/* Store Window 2 */}
             <div className="relative bg-gray-50 rounded-lg shadow border border-gray-200 transition-transform duration-300 hover:scale-105 overflow-hidden h-32 flex items-center justify-center">
-              <img
+              <Image
                 src="/babbis2.jpg"
                 alt="Store 2"
-                className="object-cover w-full h-full"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 33vw"
               />
             </div>
             {/* Store Window 3 */}
             <div className="relative bg-gray-50 rounded-lg shadow border border-gray-200 transition-transform duration-300 hover:scale-105 overflow-hidden h-32 flex items-center justify-center">
-              <img
+              <Image
                 src="/babbis3.jpg"
                 alt="Store 3"
-                className="object-cover w-full h-full"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 33vw"
               />
             </div>
           </div>
