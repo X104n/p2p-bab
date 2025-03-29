@@ -32,7 +32,7 @@ const FlyingImage: React.FC<FlyingImageProps> = ({ imageSrc }) => {
 
         setTimeout(() => {
             setPosition({ top: startPosition.endY, left: startPosition.endX });
-        }, 1000 + Math.random() * 1000); // Start moving after 1 second
+        }, 3000 + Math.random() * 1000); // Start moving after 1 second
 
         // Fly again after 6 seconds
         setTimeout(flyImage, 5000 + Math.random() * 3000);

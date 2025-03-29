@@ -29,6 +29,27 @@ const Overlay = () => {
         <FlyingImage imageSrc="/bab.png"></FlyingImage>
         <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
         <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        <FlyingImage imageSrc="/drunk.gif"></FlyingImage>
+        <FlyingImage imageSrc="/bab.png"></FlyingImage>
+        
       </div>
     </div>,
     document.body, // Use the body element as the portal destination
