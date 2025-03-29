@@ -27,14 +27,20 @@ export default function Navbar({ user, rankLevel, wins, lostMoney = 0 }: NavbarP
         {/* Left side - Brand and navigation */}
         <div className="flex items-center space-x-4">
           <span className="font-bold text-2xl text-black">Bable Royal</span>
-          <Link href="/dashboard" className="hover:text-blue-500 text-lg text-black font-medium">
+          <Link
+            href="/dashboard"
+            className="hover:text-blue-500 text-lg text-black font-medium"
+          >
             Dashboard
           </Link>
-          <Link href="/map" className="hover:text-blue-500 text-lg text-black font-medium">
+          <Link
+            href="/map"
+            className="hover:text-blue-500 text-lg text-black font-medium"
+          >
             Map
           </Link>
         </div>
-        
+
         {/* Center - Logout button */}
         <div className="absolute left-1/2 transform -translate-x-1/2">
           <button
@@ -82,7 +88,10 @@ export default function Navbar({ user, rankLevel, wins, lostMoney = 0 }: NavbarP
             </div>
           </div>
           <span className="text-black font-medium text-lg">Hi, {user}</span>
-          <Link href="/profile" className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors text-lg">
+          <Link
+            href="/profile"
+            className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors text-lg"
+          >
             Profile
           </Link>
         </div>
@@ -90,3 +99,4 @@ export default function Navbar({ user, rankLevel, wins, lostMoney = 0 }: NavbarP
     </nav>
   );
 }
+
