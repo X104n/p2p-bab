@@ -1,12 +1,6 @@
-import React from 'react';
+// src/app/(protected)/profile/page.tsx
+import ProfilePage from "@/components/profile-page";
 
-const ProfilePage = () => {
-    return (
-        <div>
-            <h1>Profile Page</h1>
-            <p>Welcome to your profile!</p>
-        </div>
-    );
-};
-
-export default ProfilePage;
+export default function Profile() {
+  return <ProfilePage />;
+}
