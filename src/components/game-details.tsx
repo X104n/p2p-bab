@@ -62,6 +62,8 @@ export default function GameDetails({ code }: GameDetailsProps) {
         body: JSON.stringify({ gameId: data.game.id }),
       });
 
+      router.refresh();
+
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || "Failed to join game");
