@@ -37,17 +37,17 @@ const Dashboard = () => {
       className="min-h-screen p-4 bg-cover bg-center"
       style={{ backgroundImage: "url('/alfababb.jpg')" }}
     >
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto mt-20">
         {/* Ongoing Babb Games Section */}
-        <div className="bg-white rounded-lg shadow-md p-4 mb-4 max-w-3xl mx-auto">
-          <h2 className="text-xl font-semibold mb-4 text-gray-700 flex justify-center pt-4">
+        <div className="bg-black bg-opacity-60 rounded-lg shadow-md p-4 mb-4 max-w-3xl mx-auto">
+          <h2 className="text-xl font-semibold mb-4 text-white flex justify-center pt-4">
             Ongoing Babb Games
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {ongoingGames.map((game) => (
               <div
                 key={game.id}
-                className="bg-gray-50 rounded-lg shadow p-2 border border-gray-200 hover:shadow-lg transition-shadow h-32"
+                className="bg-black bg-opacity-60 rounded-lg shadow p-2 border border-gray-600 hover:shadow-lg transition-shadow h-40"
               >
                 <div className="flex justify-between items-start mb-1">
                   <h3 className="text-xs font-medium text-blue-700">
@@ -56,7 +56,7 @@ const Dashboard = () => {
                   <span
                     className={`px-2 py-0.5 text-xs rounded-full ${
                       game.status === "Active"
-                        ? "bg-green-100 text-green-800"
+                        ? "bg-green-600 text-green-200"
                         : game.status === "Your turn"
                           ? "bg-yellow-100 text-yellow-800"
                           : "bg-gray-100 text-gray-800"
@@ -85,40 +85,41 @@ const Dashboard = () => {
               </div>
             ))}
           </div>
-          <div className="mt-4">
-            <button className="w-full bg-green-600 text-white py-1 rounded-lg hover:bg-green-700 font-medium text-xs">
-              Create New Babb Game
-            </button>
-          </div>
         </div>
 
-        {/* Available Babb Stores Section */}
-        <div className="bg-white rounded-lg shadow-md p-4 max-w-3xl mx-auto">
-          <h2 className="text-xl font-semibold mb-4 text-gray-700 flex justify-center pt-4">
-            Available Babb Stores
+        {/* Available Babb Lobbies Section */}
+        <div className="bg-black bg-opacity-60 rounded-lg shadow-md p-4 max-w-3xl mx-auto">
+          <h2 className="text-xl font-semibold mb-4 text-white flex justify-center pt-4">
+            Available Babb Lobbies
           </h2>
+          {/* Added extra bottom margin to the button container */}
+          <div className="mt-4 mb-4">
+            <button className="w-full bg-green-600 p-4 text-white py-1 rounded-lg hover:bg-green-700 font-medium text-xs">
+              Create New Babb Lobby
+            </button>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {/* Store Window 1 */}
-            <div className="relative bg-gray-50 rounded-lg shadow border border-gray-200 transition-transform duration-300 hover:scale-105 overflow-hidden h-32 flex items-center justify-center">
+            {/* Lobby Window 1 */}
+            <div className="relative bg-black bg-opacity-60 rounded-lg shadow border border-gray-600 transition-transform duration-300 hover:scale-105 overflow-hidden h-40 flex items-center justify-center">
               <img
                 src="/babbis1.jpg"
-                alt="Store 1"
+                alt="Lobby 1"
                 className="object-cover w-full h-full"
               />
             </div>
-            {/* Store Window 2 */}
-            <div className="relative bg-gray-50 rounded-lg shadow border border-gray-200 transition-transform duration-300 hover:scale-105 overflow-hidden h-32 flex items-center justify-center">
+            {/* Lobby Window 2 */}
+            <div className="relative bg-black bg-opacity-60 rounded-lg shadow border border-gray-600 transition-transform duration-300 hover:scale-105 overflow-hidden h-40 flex items-center justify-center">
               <img
                 src="/babbis2.jpg"
-                alt="Store 2"
+                alt="Lobby 2"
                 className="object-cover w-full h-full"
               />
             </div>
-            {/* Store Window 3 */}
-            <div className="relative bg-gray-50 rounded-lg shadow border border-gray-200 transition-transform duration-300 hover:scale-105 overflow-hidden h-32 flex items-center justify-center">
+            {/* Lobby Window 3 */}
+            <div className="relative bg-black bg-opacity-60 rounded-lg shadow border border-gray-600 transition-transform duration-300 hover:scale-105 overflow-hidden h-40 flex items-center justify-center">
               <img
                 src="/babbis3.jpg"
-                alt="Store 3"
+                alt="Lobby 3"
                 className="object-cover w-full h-full"
               />
             </div>
