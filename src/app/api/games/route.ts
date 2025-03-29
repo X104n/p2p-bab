@@ -1,6 +1,6 @@
 import { getUser } from "@/lib/session";
 import { NextResponse } from "next/server";
-import { gameStore, Game } from "@/lib/game-store";
+import { gameStore } from "@/lib/game-store";
 
 // Handle POST requests for creating a new game
 export async function POST(request: Request) {
