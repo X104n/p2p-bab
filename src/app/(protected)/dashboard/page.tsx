@@ -107,17 +107,17 @@ export default function Dashboard() {
     >
       <div className="max-w-4xl mx-auto mt-80">
         {/* Your Babb Lobbies Section */}
-        <div className="bg-black bg-opacity-50 rounded-lg shadow-md p-4 mb-4 max-w-3xl mx-auto">
-          <h2 className="text-xl font-semibold mb-4 text-white flex justify-center pt-4">
+        <div className="bg-white/70 rounded-lg shadow-md p-4 mb-4 max-w-3xl mx-auto">
+          <h2 className="text-xl font-semibold mb-4 text-black flex justify-center pt-4">
             Your Babb Lobbies
           </h2>
 
           {loading ? (
-            <p className="text-center py-4 text-white">Loading games...</p>
+            <p className="text-center py-4 text-black">Loading games...</p>
           ) : error ? (
             <p className="text-center text-red-500 py-4">{error}</p>
           ) : userGames.length === 0 ? (
-            <p className="text-center py-4 text-white">
+            <p className="text-center py-4 text-black">
               You are not part of any games yet.
             </p>
           ) : (
@@ -125,7 +125,7 @@ export default function Dashboard() {
               {userGames.map((game) => (
                 <div
                   key={game.id}
-                  className="bg-black bg-opacity-20 rounded-lg shadow p-2 border border-gray-600 hover:shadow-lg transition-shadow h-32"
+                  className="bg-white/70 rounded-lg shadow p-2 border border-gray-600 hover:shadow-lg transition-shadow h-32"
                 >
                   <div className="flex justify-between items-start mb-1">
                     <h3 className="text-xs font-medium text-blue-400">
@@ -144,13 +144,13 @@ export default function Dashboard() {
                     </span>
                   </div>
                   <div className="space-y-0.5 text-xs">
-                    <p className="text-white">
+                    <p className="text-black">
                       Code: <span className="font-bold">{game.code}</span>
                     </p>
-                    <p className="text-white">
+                    <p className="text-black">
                       Players: {game.currentPlayers}/{game.players}
                     </p>
-                    <p className="text-white">
+                    <p className="text-black">
                       Last updated: {formatLastUpdated(game.lastUpdated)}
                     </p>
                   </div>
@@ -180,17 +180,17 @@ export default function Dashboard() {
         </div>
 
         {/* Available Babb Lobbies Section */}
-        <div className="bg-black bg-opacity-20 rounded-lg shadow-md p-4 max-w-3xl mx-auto">
-          <h2 className="text-xl font-semibold mb-4 text-white flex justify-center pt-4">
+        <div className="bg-white/70 bg-opacity-20 rounded-lg shadow-md p-4 max-w-3xl mx-auto">
+          <h2 className="text-xl font-semibold mb-4 text-black flex justify-center pt-4">
             Available Babb Lobbies
           </h2>
 
           {loading ? (
-            <p className="text-center py-4 text-white">
+            <p className="text-center py-4 text-black">
               Loading available games...
             </p>
           ) : availableGames.length === 0 ? (
-            <p className="text-center py-4 text-white">
+            <p className="text-center py-4 text-black">
               No available games to join at the moment.
             </p>
           ) : (
@@ -198,7 +198,7 @@ export default function Dashboard() {
               {availableGames.map((game) => (
                 <div
                   key={game.id}
-                  className="bg-black bg-opacity-20 rounded-lg shadow p-2 border border-gray-600 hover:shadow-lg transition-shadow h-36"
+                  className="bg-black rounded-lg shadow p-2 border border-gray-600 hover:shadow-lg transition-shadow h-36"
                 >
                   <div className="flex justify-between items-start mb-1">
                     <h3 className="text-xs font-medium text-blue-400">
