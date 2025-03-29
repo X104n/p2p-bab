@@ -2,15 +2,22 @@
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
-export default function Navbar({ user }: { user: string }) {
+interface NavbarProps {
+  user: string;
+  rankLevel: number;
+  wins: number;
+  lostMoney: number;
+}
+
+export default function Navbar({ user, rankLevel, wins, lostMoney = 0 }: NavbarProps) {
   const router = useRouter();
 
   const handleLogout = async () => {
     await fetch("/api/logout", {
       method: "POST",
     });
-
     router.push("/");
   };
 
@@ -20,8 +27,12 @@ export default function Navbar({ user }: { user: string }) {
         {/* Left side - Brand and navigation */}
         <div className="flex items-center space-x-4">
           <span className="font-bold text-2xl text-black">Bable Royal</span>
-          <Link href="/dashboard" className="hover:text-blue-500 text-lg text-black font-medium">Dashboard</Link>
-          <Link href="/map" className="hover:text-blue-500 text-lg text-black font-medium">Map</Link>
+          <Link href="/dashboard" className="hover:text-blue-500 text-lg text-black font-medium">
+            Dashboard
+          </Link>
+          <Link href="/map" className="hover:text-blue-500 text-lg text-black font-medium">
+            Map
+          </Link>
         </div>
         
         {/* Center - Logout button */}
@@ -34,13 +45,44 @@ export default function Navbar({ user }: { user: string }) {
           </button>
         </div>
         
-        {/* Right side - User greeting and profile link */}
+        {/* Right side - Metrics and Profile */}
         <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-1">
+              <Image 
+                src="/images/rank-icon.png" 
+                alt="Rank Icon" 
+                width={20} 
+                height={20} 
+                className="object-contain"
+              />
+              <span className="text-black font-medium text-sm">{rankLevel}</span>
+            </div>
+            <div className="flex items-center space-x-1">
+              <Image 
+                src="/images/wins-icon.png" 
+                alt="Wins Icon" 
+                width={20} 
+                height={20} 
+                className="object-contain"
+              />
+              <span className="text-black font-medium text-sm">{wins}</span>
+            </div>
+            <div className="flex items-center space-x-1">
+              <Image 
+                src="/images/money-icon.png" 
+                alt="Money Icon" 
+                width={20} 
+                height={20} 
+                className="object-contain"
+              />
+              <span className="text-black font-medium text-sm">
+                ${lostMoney.toLocaleString()}
+              </span>
+            </div>
+          </div>
           <span className="text-black font-medium text-lg">Hi, {user}</span>
-          <Link 
-            href="/profile" 
-            className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors text-lg"
-          >
+          <Link href="/profile" className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors text-lg">
             Profile
           </Link>
         </div>
