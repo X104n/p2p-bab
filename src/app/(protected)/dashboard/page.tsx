@@ -11,31 +11,32 @@ export default function Dashboard() {
   const [availableGames, setAvailableGames] = useState<Game[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [refreshTrigger, setRefreshTrigger] = useState(0); // Add this state to trigger refreshes
+
+  // Fetch games from our API
+  const fetchGames = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch("/api/games");
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch games");
+      }
+
+      const data = await response.json();
+      setUserGames(data.userGames);
+      setAvailableGames(data.availableGames);
+    } catch (err) {
+      console.error("Error fetching games:", err);
+      setError("Could not load games");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    // Fetch games from our API
-    const fetchGames = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch("/api/games");
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch games");
-        }
-
-        const data = await response.json();
-        setUserGames(data.userGames);
-        setAvailableGames(data.availableGames);
-      } catch (err) {
-        console.error("Error fetching games:", err);
-        setError("Could not load games");
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchGames();
-  }, []);
+  }, [refreshTrigger]); // Add refreshTrigger as a dependency
 
   const handleJoinGame = async (gameId: number) => {
     try {
@@ -51,7 +52,10 @@ export default function Dashboard() {
         throw new Error("Failed to join game");
       }
 
-      // Refresh the page to show updated games
+      // Trigger a refetch by incrementing refreshTrigger
+      setRefreshTrigger((prev) => prev + 1);
+
+      // Also refresh the router in case of any route-based data
       router.refresh();
     } catch (error) {
       console.error("Error joining game:", error);
