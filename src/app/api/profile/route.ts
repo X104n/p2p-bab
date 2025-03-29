@@ -10,11 +10,21 @@ interface ProfileData {
   lostMoney: number;
 }
 
+const RANKS = [
+  "Rookie",
+  "Contender",
+  "Challenger",
+  "Expert",
+  "Master",
+  "Champion",
+  "Legend"
+];
+
 // Dummy data - would come from a database in a real app
 const userProfiles: Record<string, ProfileData> = {
   // Default profile for any user not explicitly defined
   default: {
-    rank: "Rookie",
+    rank: RANKS[0], // Rookie
     rankLevel: 1,
     wins: 3,
     winStreak: 0,
@@ -24,7 +34,7 @@ const userProfiles: Record<string, ProfileData> = {
 
 // Add some sample profiles
 userProfiles["John"] = {
-  rank: "Expert",
+  rank: RANKS[3], // Expert
   rankLevel: 4,
   wins: 24,
   winStreak: 7,
@@ -32,7 +42,7 @@ userProfiles["John"] = {
 };
 
 userProfiles["Sarah"] = {
-  rank: "Master",
+  rank: RANKS[4], // Master
   rankLevel: 5,
   wins: 42,
   winStreak: 12,
