@@ -75,6 +75,11 @@ export default function GameDetails({ code }: GameDetailsProps) {
     }
   };
 
+  // Handle launching the game map
+  const handlePlayGame = () => {
+    router.push(`/map/${code}`);
+  };
+
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
@@ -210,17 +215,15 @@ export default function GameDetails({ code }: GameDetailsProps) {
             </button>
           )}
 
-          {isParticipant && game.status === "Active" && (
-            <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-              Play Game
-            </button>
-          )}
-
-          {isParticipant && game.status === "Your turn" && (
-            <button className="px-6 py-3 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700">
-              Take Your Turn
-            </button>
-          )}
+          {isParticipant &&
+            (game.status === "Active" || game.status === "Your turn") && (
+              <button
+                onClick={() => router.push(`/map/${code}`)}
+                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              >
+                Play Game
+              </button>
+            )}
         </div>
       </div>
     </div>

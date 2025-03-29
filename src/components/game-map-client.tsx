@@ -1,6 +1,8 @@
+// src/components/game-map-client.tsx
 "use client";
 import { useEffect, useState, useRef } from "react";
-import "./style.css";
+import { useRouter } from "next/navigation";
+import "./style.css"; // Adjust path based on your CSS location
 
 const step_size = 1000;
 
@@ -10,10 +12,18 @@ interface MapData {
   coordinates: { x: number; y: number };
 }
 
-export default function Map() {
+interface GameMapClientProps {
+  code: string;
+}
+
+export default function GameMapClient({ code }: GameMapClientProps) {
+  const router = useRouter();
+  const [isAuthorized, setIsAuthorized] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
   const [mapdata, setMapdata] = useState<MapData>({
     hate: "",
-    feedback: "Start walking!",
+    feedback: `Start walking to find the babb!`,
     coordinates: { x: 50, y: 50 },
   });
 
@@ -23,22 +33,64 @@ export default function Map() {
     y: 0,
   });
   const [show, setShow] = useState<boolean>(false);
-  const [theFeedback, setTheFeedback] = useState<string>("Start walking!");
+  const [theFeedback, setTheFeedback] = useState<string>(
+    `Start walking to find the babb!`,
+  );
   const [positions, setPositions] = useState<{ x: number; y: number }[]>([
     { x: 50, y: 50 },
   ]);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
+  // First, validate that the user can access this game
+  useEffect(() => {
+    const validateAccess = async () => {
+      try {
+        setIsLoading(true);
+        console.log("Validating access for game code:", code);
+        const response = await fetch(`/api/validate-game?code=${code}`);
+        const data = await response.json();
+
+        if (!response.ok) {
+          console.log("Authorization failed:", data.error);
+          // If there's a redirect URL in the response, use it
+          if (data.redirect) {
+            router.push(data.redirect);
+            return;
+          }
+          // Default fallback
+          router.push("/dashboard");
+          return;
+        }
+
+        console.log("Authorization successful");
+        setIsAuthorized(true);
+      } catch (error) {
+        console.error("Authentication error:", error);
+        router.push("/dashboard");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    validateAccess();
+  }, [code, router]);
+
+  // Fetch map data with the game code
   const fetchMapData = async () => {
+    if (!isAuthorized) return null;
+
     try {
-      const response = await fetch("/api/map");
+      // Make API call with the game code to get game-specific map data
+      const response = await fetch(`/api/map?code=${code}`);
       if (!response.ok) {
-        throw new Error("Failed to fetch profile data");
+        throw new Error("Failed to fetch map data");
       }
       const data = await response.json();
       setMapdata(data);
+      return data;
     } catch (err) {
       console.error("Error fetching map data:", err);
+      return null;
     }
   };
 
@@ -59,6 +111,8 @@ export default function Map() {
 
   // Effect to fetch map data and set up the interval
   useEffect(() => {
+    if (!isAuthorized) return;
+
     fetchMapData();
 
     const int = setInterval(() => {
@@ -80,22 +134,36 @@ export default function Map() {
       window.removeEventListener("resize", handleResize);
       clearInterval(int);
     };
-  }, []); // Empty dependency array to run once on mount
+  }, [isAuthorized, code]); // Re-run when authorization status changes
 
   // Effect to manage the map data updates based on the timer
   useEffect(() => {
-    if (nxtUpdate > 0) return;
+    if (nxtUpdate > 0 || !isAuthorized) return;
 
-    fetchMapData().then(() => {
-      setPositions((prev) => [...prev, mapdata.coordinates]);
-      setTheFeedback(mapdata.feedback);
-      setNxtUpdate(step_size * 10); // Resetting the timer
-      updateDimensions();
+    fetchMapData().then((data) => {
+      if (data) {
+        setPositions((prev) => [...prev, data.coordinates]);
+        setTheFeedback(data.feedback);
+        setNxtUpdate(step_size * 10); // Resetting the timer
+        updateDimensions();
 
-      setShow(true);
-      setTimeout(() => setShow(false), step_size * 3); // Show feedback for 3 seconds
+        setShow(true);
+        setTimeout(() => setShow(false), step_size * 3); // Show feedback for 3 seconds
+      }
     });
-  }, [nxtUpdate, mapdata.coordinates, mapdata.feedback]);
+  }, [nxtUpdate, isAuthorized, code]);
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="text-2xl font-bold text-black">Loading game...</div>
+      </div>
+    );
+  }
+
+  if (!isAuthorized) {
+    return null; // The redirect will happen in the useEffect, no need to render anything
+  }
 
   return (
     <div className="container">
@@ -176,7 +244,7 @@ export default function Map() {
       <div className="header" suppressHydrationWarning>
         <p className="status_text">{theFeedback}</p>
         <p className="small_text">
-          I’ll check again in {nxtUpdate / 1000} seconds..
+          Game: {code} | Next update in {nxtUpdate / 1000} seconds..
         </p>
       </div>
     </div>
