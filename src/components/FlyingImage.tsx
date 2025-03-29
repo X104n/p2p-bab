@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import "./FlyingImage.css"; // Ensure you create this CSS file
 
 interface FlyingImageProps {
@@ -64,9 +65,8 @@ const FlyingImage: React.FC<FlyingImageProps> = ({ imageSrc }) => {
 
     return () => clearTimeout(timer);
   }, []);
-
   return (
-    <img
+    <Image
       src={imageSrc} // Replace with your image path
       alt="Flying"
       className="flying-image rotating"
@@ -74,6 +74,8 @@ const FlyingImage: React.FC<FlyingImageProps> = ({ imageSrc }) => {
         ...position,
         transition: "top 5s ease-in-out, left 5s ease-in-out",
       }}
+      width={100} // Replace with appropriate width
+      height={100} // Replace with appropriate height
     />
   );
 };
