@@ -33,6 +33,7 @@ body {
   align-items: center;
   height: 70%;
   overflow: hidden;
+  background-color: white;
 }
 
 .footer {
@@ -42,15 +43,18 @@ body {
   align-items: center;
   flex: 1;
   background-color: white;
+  color: black;
 }
 
 .status_text {
   font-size: xx-large;
+  color: black;
 }
 
 .small_text {
   text-align: center;
   font-size: x-small;
+  color: black;
 }
 
 .mappoint {
@@ -91,5 +95,6 @@ body {
   width: 20vh;
   border-radius: 10px;
   border-bottom-left-radius: 0px;
+  color: black;
 }
 
