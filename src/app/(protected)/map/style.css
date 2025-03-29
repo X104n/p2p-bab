@@ -28,7 +28,7 @@ body {
 
 .body {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   flex: 7;
@@ -49,6 +49,7 @@ body {
 }
 
 .small_text {
+  text-align: center;
   font-size: x-small;
 }
 
@@ -60,3 +61,45 @@ body {
   border-radius: 50px;
   background-color: red;
 }
+
+
+.map_container {
+    display: flex;
+    flex-direction: row;
+    height: 90%;
+    aspect-ratio: 1/1;
+    flex: 1;
+    margin: 10%;
+    border-radius: 10px;
+    background-color: #f9f9f9; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.direction_container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.chat_bubble {
+    position: absolute;
+    text-align: center;
+    font-size: x-small;
+    background-color: rgba(0, 255, 140, 0.205) ;
+    padding: 10px;
+    width: 20vh;
+    border-radius: 10px;
+    border-bottom-left-radius: 0px;
+}
+
+
+/*
+      <div className="footer">
+        <p className="small_text">user_123 just got warmer...</p>
+        <p className="small_text">One of you just made an amazing deal!</p>
+        <p className="small_text">11 of you did not... hurry up!</p>
+      </div>
+*/
