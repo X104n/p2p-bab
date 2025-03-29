@@ -1,8 +1,6 @@
-// src/components/game-map-client.tsx
 "use client";
-import { useEffect, useState, useRef } from "react";
-import { useRouter } from "next/navigation";
-import "./style.css"; // Adjust path based on your CSS location
+import { useEffect, useState, useRef, useCallback } from "react";
+import "./style.css";
 
 const step_size = 1000;
 
@@ -13,17 +11,13 @@ interface MapData {
 }
 
 interface GameMapClientProps {
-  code: string;
+  code?: string;
 }
 
 export default function GameMapClient({ code }: GameMapClientProps) {
-  const router = useRouter();
-  const [isAuthorized, setIsAuthorized] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-
   const [mapdata, setMapdata] = useState<MapData>({
     hate: "",
-    feedback: `Start walking to find the babb!`,
+    feedback: "Start walking!",
     coordinates: { x: 50, y: 50 },
   });
 
@@ -33,68 +27,29 @@ export default function GameMapClient({ code }: GameMapClientProps) {
     y: 0,
   });
   const [show, setShow] = useState<boolean>(false);
-  const [theFeedback, setTheFeedback] = useState<string>(
-    `Start walking to find the babb!`,
-  );
+  const [theFeedback, setTheFeedback] = useState<string>("Start walking!");
   const [positions, setPositions] = useState<{ x: number; y: number }[]>([
     { x: 50, y: 50 },
   ]);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  // First, validate that the user can access this game
-  useEffect(() => {
-    const validateAccess = async () => {
-      try {
-        setIsLoading(true);
-        console.log("Validating access for game code:", code);
-        const response = await fetch(`/api/validate-game?code=${code}`);
-        const data = await response.json();
-
-        if (!response.ok) {
-          console.log("Authorization failed:", data.error);
-          // If there's a redirect URL in the response, use it
-          if (data.redirect) {
-            router.push(data.redirect);
-            return;
-          }
-          // Default fallback
-          router.push("/dashboard");
-          return;
-        }
-
-        console.log("Authorization successful");
-        setIsAuthorized(true);
-      } catch (error) {
-        console.error("Authentication error:", error);
-        router.push("/dashboard");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    validateAccess();
-  }, [code, router]);
-
-  // Fetch map data with the game code
-  const fetchMapData = async () => {
-    if (!isAuthorized) return null;
-
+  // Use useCallback to memoize these functions to prevent unnecessary re-renders
+  const fetchMapData = useCallback(async () => {
     try {
-      // Make API call with the game code to get game-specific map data
-      const response = await fetch(`/api/map?code=${code}`);
+      // Use the code parameter if provided
+      const url = code ? `/api/map?code=${code}` : "/api/map";
+      const response = await fetch(url);
       if (!response.ok) {
         throw new Error("Failed to fetch map data");
       }
       const data = await response.json();
       setMapdata(data);
-      return data;
     } catch (err) {
       console.error("Error fetching map data:", err);
-      return null;
     }
-  };
+  }, [code]); // Depend on the code prop
 
-  const updateDimensions = () => {
+  const updateDimensions = useCallback(() => {
     if (!containerRef.current) return;
 
     setGlobalpos({
@@ -107,12 +62,10 @@ export default function GameMapClient({ code }: GameMapClientProps) {
         containerRef.current.offsetTop -
         60,
     });
-  };
+  }, [mapdata.coordinates.x, mapdata.coordinates.y]); // Depend on the coordinates
 
   // Effect to fetch map data and set up the interval
   useEffect(() => {
-    if (!isAuthorized) return;
-
     fetchMapData();
 
     const int = setInterval(() => {
@@ -134,36 +87,28 @@ export default function GameMapClient({ code }: GameMapClientProps) {
       window.removeEventListener("resize", handleResize);
       clearInterval(int);
     };
-  }, [isAuthorized, code]); // Re-run when authorization status changes
+  }, [fetchMapData, updateDimensions]); // Include the memoized functions
 
   // Effect to manage the map data updates based on the timer
   useEffect(() => {
-    if (nxtUpdate > 0 || !isAuthorized) return;
+    if (nxtUpdate > 0) return;
 
-    fetchMapData().then((data) => {
-      if (data) {
-        setPositions((prev) => [...prev, data.coordinates]);
-        setTheFeedback(data.feedback);
-        setNxtUpdate(step_size * 10); // Resetting the timer
-        updateDimensions();
+    fetchMapData().then(() => {
+      setPositions((prev) => [...prev, mapdata.coordinates]);
+      setTheFeedback(mapdata.feedback);
+      setNxtUpdate(step_size * 10); // Resetting the timer
+      updateDimensions();
 
-        setShow(true);
-        setTimeout(() => setShow(false), step_size * 3); // Show feedback for 3 seconds
-      }
+      setShow(true);
+      setTimeout(() => setShow(false), step_size * 3); // Show feedback for 3 seconds
     });
-  }, [nxtUpdate, isAuthorized, code]);
-
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="text-2xl font-bold text-black">Loading game...</div>
-      </div>
-    );
-  }
-
-  if (!isAuthorized) {
-    return null; // The redirect will happen in the useEffect, no need to render anything
-  }
+  }, [
+    nxtUpdate,
+    mapdata.coordinates,
+    mapdata.feedback,
+    fetchMapData,
+    updateDimensions,
+  ]);
 
   return (
     <div className="container">
@@ -244,7 +189,7 @@ export default function GameMapClient({ code }: GameMapClientProps) {
       <div className="header" suppressHydrationWarning>
         <p className="status_text">{theFeedback}</p>
         <p className="small_text">
-          Game: {code} | Next update in {nxtUpdate / 1000} seconds..
+          I'll check again in {nxtUpdate / 1000} seconds..
         </p>
       </div>
     </div>

@@ -1,7 +1,12 @@
-// src/app/(protected)/map/[code]/page.tsx
-import GameMapClient from "@/components/game-map-client";
+"use client";
 
-// Simplest possible server component that just passes through the code
-export default function GameMapPage({ params }: { params: { code: string } }) {
-  return <GameMapClient code={params.code} />;
+import GameMapClient from "@/components/game-map-client";
+import { useParams } from "next/navigation";
+
+export default function GameMapPage() {
+  // Use the useParams hook to get the code parameter
+  const params = useParams();
+  const code = params.code as string;
+
+  return <GameMapClient code={code} />;
 }
