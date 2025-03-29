@@ -102,11 +102,11 @@ export default function Dashboard() {
       className="min-h-screen p-4 bg-cover bg-center"
       style={{ backgroundImage: "url('/alfababb.jpg')" }}
     >
-      <div className="max-w-4xl mx-auto mt-20">
+      <div className="max-w-4xl mx-auto">
         {/* Ongoing Babb Games Section */}
-        <div className="bg-black bg-opacity-60 rounded-lg shadow-md p-4 mb-4 max-w-3xl mx-auto">
-          <h2 className="text-xl font-semibold mb-4 text-white flex justify-center pt-4">
-            Ongoing Babb Games
+        <div className="bg-white rounded-lg shadow-md p-4 mb-4 max-w-3xl mx-auto">
+          <h2 className="text-xl font-semibold mb-4 text-black flex justify-center pt-4">
+            Your Babb Games
           </h2>
           
           {loading ? (
@@ -139,20 +139,22 @@ export default function Dashboard() {
                     </span>
                   </div>
                   <div className="space-y-0.5 text-xs">
+                    <p className="text-black">Code: <span className="font-bold">{game.code}</span></p>
                     <p className="text-black">Players: {game.currentPlayers}/{game.players}</p>
                     <p className="text-black">
                       Last updated: {formatLastUpdated(game.lastUpdated)}
                     </p>
                   </div>
-                  <button
-                    className={`mt-2 w-full py-1 rounded text-xs ${
+                  <Link
+                    href={`/game?code=${game.code}`}
+                    className={`mt-2 block w-full py-1 rounded text-xs text-center ${
                       game.status === "Your turn" || game.status === "Active"
                         ? "bg-blue-600 text-white hover:bg-blue-700"
                         : "bg-gray-400 text-white hover:bg-gray-500"
                     }`}
                   >
                     {getButtonText(game.status)}
-                  </button>
+                  </Link>
                 </div>
               ))}
             </div>
@@ -189,17 +191,26 @@ export default function Dashboard() {
                     </span>
                   </div>
                   <div className="space-y-0.5 text-xs">
+                    <p className="text-black">Code: <span className="font-bold">{game.code}</span></p>
                     <p className="text-black">Players: {game.currentPlayers}/{game.players}</p>
                     <p className="text-black">
                       Created by: {game.createdBy}
                     </p>
                   </div>
-                  <button
-                    onClick={() => handleJoinGame(game.id)}
-                    className="mt-2 w-full py-1 rounded text-xs bg-green-600 text-white hover:bg-green-700"
-                  >
-                    Join Game
-                  </button>
+                  <div className="flex gap-1 mt-2">
+                    <Link
+                      href={`/game?code=${game.code}`}
+                      className="flex-1 py-1 rounded text-xs bg-blue-600 text-white hover:bg-blue-700 text-center"
+                    >
+                      View
+                    </Link>
+                    <button
+                      onClick={() => handleJoinGame(game.id)}
+                      className="flex-1 py-1 rounded text-xs bg-green-600 text-white hover:bg-green-700"
+                    >
+                      Join
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
@@ -212,27 +223,27 @@ export default function Dashboard() {
             Available Babb Stores
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {/* Lobby Window 1 */}
-            <div className="relative bg-black bg-opacity-60 rounded-lg shadow border border-gray-600 transition-transform duration-300 hover:scale-105 overflow-hidden h-40 flex items-center justify-center">
+            {/* Store Window 1 */}
+            <div className="relative bg-gray-50 rounded-lg shadow border border-gray-200 transition-transform duration-300 hover:scale-105 overflow-hidden h-32 flex items-center justify-center">
               <img
                 src="/babbis1.jpg"
-                alt="Lobby 1"
+                alt="Store 1"
                 className="object-cover w-full h-full"
               />
             </div>
-            {/* Lobby Window 2 */}
-            <div className="relative bg-black bg-opacity-60 rounded-lg shadow border border-gray-600 transition-transform duration-300 hover:scale-105 overflow-hidden h-40 flex items-center justify-center">
+            {/* Store Window 2 */}
+            <div className="relative bg-gray-50 rounded-lg shadow border border-gray-200 transition-transform duration-300 hover:scale-105 overflow-hidden h-32 flex items-center justify-center">
               <img
                 src="/babbis2.jpg"
-                alt="Lobby 2"
+                alt="Store 2"
                 className="object-cover w-full h-full"
               />
             </div>
-            {/* Lobby Window 3 */}
-            <div className="relative bg-black bg-opacity-60 rounded-lg shadow border border-gray-600 transition-transform duration-300 hover:scale-105 overflow-hidden h-40 flex items-center justify-center">
+            {/* Store Window 3 */}
+            <div className="relative bg-gray-50 rounded-lg shadow border border-gray-200 transition-transform duration-300 hover:scale-105 overflow-hidden h-32 flex items-center justify-center">
               <img
                 src="/babbis3.jpg"
-                alt="Lobby 3"
+                alt="Store 3"
                 className="object-cover w-full h-full"
               />
             </div>

@@ -33,21 +33,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ message: "Player count must be between 2 and 10" }, { status: 400 });
     }
     
-    // Create a new game
-    const newGame = {
-      id: Date.now(), // Simple ID generation using timestamp
-      title,
-      players: numberOfPlayers,
-      currentPlayers: 1, // The creator joins automatically
-      participants: [user], // Add the creator as a participant
-      status: "Open",
-      createdBy: user,
-      createdAt: new Date().toISOString(),
-      lastUpdated: new Date().toISOString(),
-    };
-    
-    // Add the game to our store
-    gameStore.games.push(newGame);
+    // Create a new game using our helper function
+    const newGame = gameStore.createGame(title, numberOfPlayers, user);
     
     return NextResponse.json({ message: "Game created successfully", game: newGame });
   } catch (error) {
