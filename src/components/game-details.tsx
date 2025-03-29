@@ -75,11 +75,6 @@ export default function GameDetails({ code }: GameDetailsProps) {
     }
   };
 
-  // Handle launching the game map
-  const handlePlayGame = () => {
-    router.push(`/map/${code}`);
-  };
-
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
