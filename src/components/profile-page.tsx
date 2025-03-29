@@ -90,7 +90,9 @@ export default function ProfilePage() {
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen p-4">
         <div
           className={`bg-white/10 backdrop-blur-sm shadow-lg rounded-xl p-8 w-full max-w-2xl transform transition-all duration-6000 ${
-            showProfile ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
+            showProfile
+              ? "translate-y-0 opacity-100"
+              : "translate-y-20 opacity-0"
           }`}
         >
           <h1 className="text-3xl font-bold text-center mb-8 text-white">

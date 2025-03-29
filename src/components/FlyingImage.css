@@ -1,22 +1,20 @@
+.flying-image {
+  position: absolute; /* Keep absolute positioning */
+  z-index: 9999; /* Ensure flying images are above other content */
+  width: 100px; /* Adjust based on your image size */
+  height: auto; /* Maintain aspect ratio */
+  transition: all 10s ease; /* Smooth transition during position change */
+}
 
-  
-  .flying-image {
-    position: absolute; /* Keep absolute positioning */
-    z-index: 9999; /* Ensure flying images are above other content */
-    width: 100px; /* Adjust based on your image size */
-    height: auto; /* Maintain aspect ratio */
-    transition: all 10s ease; /* Smooth transition during position change */
+.rotating {
+  animation: rotate 2s linear infinite; /* Rotates continuously */
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg); /* Starting from 0 degrees */
   }
-  
-  .rotating {
-    animation: rotate 2s linear infinite; /* Rotates continuously */
+  to {
+    transform: rotate(360deg); /* Complete a full rotation */
   }
-  
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg); /* Starting from 0 degrees */
-    }
-    to {
-      transform: rotate(360deg); /* Complete a full rotation */
-    }
-  }
+}
