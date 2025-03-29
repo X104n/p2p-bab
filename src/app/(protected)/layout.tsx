@@ -1,6 +1,6 @@
-// src/app/(authenticated)/layout.tsx
 import { getUser } from "@/lib/session";
 import { redirect } from "next/navigation";
+import Navbar from "@/components/navbar";
 
 export default async function AuthenticatedLayout({
   children,
@@ -14,10 +14,9 @@ export default async function AuthenticatedLayout({
   }
 
   return (
-    <div>
-      <header>{/* Add your header content here */}</header>
-      <main>{children}</main>
-      <footer>{/* Add your footer content here */}</footer>
+    <div className="flex flex-col min-h-screen">
+      <Navbar user={user} />
+      <main className="flex-grow">{children}</main>
     </div>
   );
 }
