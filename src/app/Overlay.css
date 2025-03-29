@@ -17,7 +17,7 @@
 .content {
   color: white; /* Text color */
   text-align: center;
-  pointer-events: none; 
+  pointer-events: none;
 }
 
 /* Keyframes for fade in animation */

@@ -102,7 +102,7 @@ export default function Dashboard() {
 
   return (
     <div
-      className="min-h-screen p-4 bg-cover bg-center"
+      className="min-h-screen p-4 bg-cover bg-top"
       style={{ backgroundImage: "url('/alfababb.jpg')" }}
     >
       <div className="max-w-4xl mx-auto mt-50">

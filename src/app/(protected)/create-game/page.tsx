@@ -74,10 +74,10 @@ export default function CreateGame() {
 
   return (
     <div
-      className="min-h-screen p-4 bg-cover bg-center"
+      className="min-h-screen p-4 bg-cover bg-top"
       style={{ backgroundImage: "url('/alfababb.jpg')" }}
     >
-      <div className="max-w-md mx-auto bg-white/90 backdrop-blur-sm rounded-lg shadow-md p-6 mt-8">
+      <div className="max-w-md mx-auto bg-white/40 backdrop-blur-sm rounded-lg shadow-md p-6 mt-40">
         <h1 className="text-2xl font-semibold mb-6 text-center text-black">
           Create New Bab Game
         </h1>
