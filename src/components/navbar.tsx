@@ -22,7 +22,7 @@ export default function Navbar({ user, rankLevel = 5, wins = 3, lostMoney = 500 
   };
 
   return (
-    <nav className="bg-white/90 backdrop-blur-sm shadow-md py-6 px-8 h-24">
+    <nav className="bg-white/100 backdrop-blur-sm shadow-md py-6 px-8 h-24">
       <div className="flex justify-between items-center">
         {/* Left side - Brand and navigation */}
         <div className="flex items-center space-x-4">

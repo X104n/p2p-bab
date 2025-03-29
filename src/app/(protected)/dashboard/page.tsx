@@ -105,19 +105,19 @@ export default function Dashboard() {
       className="min-h-screen p-4 bg-cover bg-center"
       style={{ backgroundImage: "url('/alfababb.jpg')" }}
     >
-      <div className="max-w-4xl mx-auto">
-        {/* Your Babb Games Section */}
-        <div className="bg-white rounded-lg shadow-md p-4 mb-4 max-w-3xl mx-auto">
-          <h2 className="text-xl font-semibold mb-4 text-black flex justify-center pt-4">
-            Your Babb Games
+      <div className="max-w-4xl mx-auto mt-80">
+        {/* Your Babb Lobbies Section */}
+        <div className="bg-black bg-opacity-50 rounded-lg shadow-md p-4 mb-4 max-w-3xl mx-auto">
+          <h2 className="text-xl font-semibold mb-4 text-white flex justify-center pt-4">
+            Your Babb Lobbies
           </h2>
 
           {loading ? (
-            <p className="text-center py-4 text-black">Loading games...</p>
+            <p className="text-center py-4 text-white">Loading games...</p>
           ) : error ? (
             <p className="text-center text-red-500 py-4">{error}</p>
           ) : userGames.length === 0 ? (
-            <p className="text-center py-4 text-black">
+            <p className="text-center py-4 text-white">
               You are not part of any games yet.
             </p>
           ) : (
@@ -125,10 +125,10 @@ export default function Dashboard() {
               {userGames.map((game) => (
                 <div
                   key={game.id}
-                  className="bg-gray-50 rounded-lg shadow p-2 border border-gray-200 hover:shadow-lg transition-shadow h-32"
+                  className="bg-black bg-opacity-20 rounded-lg shadow p-2 border border-gray-600 hover:shadow-lg transition-shadow h-32"
                 >
                   <div className="flex justify-between items-start mb-1">
-                    <h3 className="text-xs font-medium text-blue-700">
+                    <h3 className="text-xs font-medium text-blue-400">
                       {game.title}
                     </h3>
                     <span
@@ -136,21 +136,21 @@ export default function Dashboard() {
                         game.status === "Active"
                           ? "bg-green-100 text-green-800"
                           : game.status === "Your turn"
-                            ? "bg-yellow-100 text-yellow-800"
-                            : "bg-gray-100 text-black"
+                          ? "bg-yellow-100 text-yellow-800"
+                          : "bg-gray-100 text-black"
                       }`}
                     >
                       {game.status}
                     </span>
                   </div>
                   <div className="space-y-0.5 text-xs">
-                    <p className="text-black">
+                    <p className="text-white">
                       Code: <span className="font-bold">{game.code}</span>
                     </p>
-                    <p className="text-black">
+                    <p className="text-white">
                       Players: {game.currentPlayers}/{game.players}
                     </p>
-                    <p className="text-black">
+                    <p className="text-white">
                       Last updated: {formatLastUpdated(game.lastUpdated)}
                     </p>
                   </div>
@@ -179,18 +179,18 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Available Babb Stores Section */}
-        <div className="bg-white rounded-lg shadow-md p-4 max-w-3xl mx-auto">
-          <h2 className="text-xl font-semibold mb-4 text-black flex justify-center pt-4">
-            Available Babb Stores
+        {/* Available Babb Lobbies Section */}
+        <div className="bg-black bg-opacity-20 rounded-lg shadow-md p-4 max-w-3xl mx-auto">
+          <h2 className="text-xl font-semibold mb-4 text-white flex justify-center pt-4">
+            Available Babb Lobbies
           </h2>
 
           {loading ? (
-            <p className="text-center py-4 text-black">
+            <p className="text-center py-4 text-white">
               Loading available games...
             </p>
           ) : availableGames.length === 0 ? (
-            <p className="text-center py-4 text-black">
+            <p className="text-center py-4 text-white">
               No available games to join at the moment.
             </p>
           ) : (
@@ -198,10 +198,10 @@ export default function Dashboard() {
               {availableGames.map((game) => (
                 <div
                   key={game.id}
-                  className="bg-gray-50 rounded-lg shadow p-2 border border-gray-200 hover:shadow-lg transition-shadow h-36"
+                  className="bg-black bg-opacity-20 rounded-lg shadow p-2 border border-gray-600 hover:shadow-lg transition-shadow h-36"
                 >
                   <div className="flex justify-between items-start mb-1">
-                    <h3 className="text-xs font-medium text-blue-700">
+                    <h3 className="text-xs font-medium text-blue-400">
                       {game.title}
                     </h3>
                     <span className="px-2 py-0.5 text-xs rounded-full bg-blue-100 text-blue-800">
@@ -209,13 +209,13 @@ export default function Dashboard() {
                     </span>
                   </div>
                   <div className="space-y-0.5 text-xs">
-                    <p className="text-black">
+                    <p className="text-white">
                       Code: <span className="font-bold">{game.code}</span>
                     </p>
-                    <p className="text-black">
+                    <p className="text-white">
                       Players: {game.currentPlayers}/{game.players}
                     </p>
-                    <p className="text-black">Created by: {game.createdBy}</p>
+                    <p className="text-white">Created by: {game.createdBy}</p>
                   </div>
                   <div className="flex gap-1 mt-2">
                     <Link
@@ -236,10 +236,10 @@ export default function Dashboard() {
             </div>
           )}
 
-          {/* Store images in lower section only when no available games or in addition to games */}
+          {/* Store images section */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {/* Store Window 1 */}
-            <div className="relative bg-gray-50 rounded-lg shadow border border-gray-200 transition-transform duration-300 hover:scale-105 overflow-hidden h-32 flex items-center justify-center">
+            <div className="relative bg-black bg-opacity-20 rounded-lg shadow border border-gray-600 transition-transform duration-300 hover:scale-105 overflow-hidden h-32 flex items-center justify-center">
               <Image
                 src="/babbis1.jpg"
                 alt="Store 1"
@@ -249,7 +249,7 @@ export default function Dashboard() {
               />
             </div>
             {/* Store Window 2 */}
-            <div className="relative bg-gray-50 rounded-lg shadow border border-gray-200 transition-transform duration-300 hover:scale-105 overflow-hidden h-32 flex items-center justify-center">
+            <div className="relative bg-black bg-opacity-20 rounded-lg shadow border border-gray-600 transition-transform duration-300 hover:scale-105 overflow-hidden h-32 flex items-center justify-center">
               <Image
                 src="/babbis2.jpg"
                 alt="Store 2"
@@ -259,7 +259,7 @@ export default function Dashboard() {
               />
             </div>
             {/* Store Window 3 */}
-            <div className="relative bg-gray-50 rounded-lg shadow border border-gray-200 transition-transform duration-300 hover:scale-105 overflow-hidden h-32 flex items-center justify-center">
+            <div className="relative bg-black bg-opacity-20 rounded-lg shadow border border-gray-600 transition-transform duration-300 hover:scale-105 overflow-hidden h-32 flex items-center justify-center">
               <Image
                 src="/babbis3.jpg"
                 alt="Store 3"
