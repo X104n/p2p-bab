@@ -11,7 +11,7 @@ export default function CreateGame() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!title || title.trim() === "") {
       setError("Please enter a game title");
       return;
@@ -36,7 +36,7 @@ export default function CreateGame() {
         },
         body: JSON.stringify({
           title,
-          playerCount
+          playerCount,
         }),
       });
 
@@ -46,7 +46,7 @@ export default function CreateGame() {
       if (!response.ok) {
         const errorText = await response.text();
         console.error("Error response:", errorText);
-        
+
         let errorMessage = "Failed to create game";
         try {
           const errorData = JSON.parse(errorText);
@@ -54,7 +54,7 @@ export default function CreateGame() {
         } catch (e) {
           console.error("Error parsing error response:", e);
         }
-        
+
         throw new Error(errorMessage);
       }
 
@@ -73,19 +73,27 @@ export default function CreateGame() {
   };
 
   return (
-    <div className="min-h-screen p-4 bg-cover bg-center" style={{ backgroundImage: "url('/alfababb.jpg')" }}>
+    <div
+      className="min-h-screen p-4 bg-cover bg-center"
+      style={{ backgroundImage: "url('/alfababb.jpg')" }}
+    >
       <div className="max-w-md mx-auto bg-white/90 backdrop-blur-sm rounded-lg shadow-md p-6 mt-8">
-        <h1 className="text-2xl font-semibold mb-6 text-center text-black">Create New Bab Game</h1>
-        
+        <h1 className="text-2xl font-semibold mb-6 text-center text-black">
+          Create New Bab Game
+        </h1>
+
         {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
             {error}
           </div>
         )}
-        
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-black font-medium mb-2" htmlFor="title">
+            <label
+              className="block text-black font-medium mb-2"
+              htmlFor="title"
+            >
               Game Title
             </label>
             <input
@@ -98,9 +106,12 @@ export default function CreateGame() {
               required
             />
           </div>
-          
+
           <div>
-            <label className="block text-black font-medium mb-2" htmlFor="playerCount">
+            <label
+              className="block text-black font-medium mb-2"
+              htmlFor="playerCount"
+            >
               Number of Players (2-10)
             </label>
             <input
@@ -114,17 +125,19 @@ export default function CreateGame() {
               required
             />
           </div>
-          
+
           <button
             type="submit"
             disabled={isSubmitting}
             className={`w-full bg-blue-600 text-white py-2 rounded-lg font-medium text-lg ${
-              isSubmitting ? "opacity-70 cursor-not-allowed" : "hover:bg-blue-700"
+              isSubmitting
+                ? "opacity-70 cursor-not-allowed"
+                : "hover:bg-blue-700"
             }`}
           >
             {isSubmitting ? "Creating..." : "Create Game"}
           </button>
-          
+
           <button
             type="button"
             onClick={() => router.push("/dashboard")}

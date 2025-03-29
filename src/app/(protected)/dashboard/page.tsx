@@ -18,11 +18,11 @@ export default function Dashboard() {
       try {
         setLoading(true);
         const response = await fetch("/api/games");
-        
+
         if (!response.ok) {
           throw new Error("Failed to fetch games");
         }
-        
+
         const data = await response.json();
         setUserGames(data.userGames);
         setAvailableGames(data.availableGames);
@@ -33,7 +33,7 @@ export default function Dashboard() {
         setLoading(false);
       }
     };
-    
+
     fetchGames();
   }, []);
 
@@ -46,11 +46,11 @@ export default function Dashboard() {
         },
         body: JSON.stringify({ gameId }),
       });
-      
+
       if (!response.ok) {
         throw new Error("Failed to join game");
       }
-      
+
       // Refresh the page to show updated games
       router.refresh();
     } catch (error) {
@@ -78,24 +78,26 @@ export default function Dashboard() {
   const formatLastUpdated = (lastUpdatedStr: string) => {
     const lastUpdated = new Date(lastUpdatedStr);
     const now = new Date();
-    const diffInSeconds = Math.floor((now.getTime() - lastUpdated.getTime()) / 1000);
-    
+    const diffInSeconds = Math.floor(
+      (now.getTime() - lastUpdated.getTime()) / 1000,
+    );
+
     if (diffInSeconds < 60) {
       return `${diffInSeconds} seconds ago`;
     }
-    
+
     const diffInMinutes = Math.floor(diffInSeconds / 60);
     if (diffInMinutes < 60) {
-      return `${diffInMinutes} minute${diffInMinutes > 1 ? 's' : ''} ago`;
+      return `${diffInMinutes} minute${diffInMinutes > 1 ? "s" : ""} ago`;
     }
-    
+
     const diffInHours = Math.floor(diffInMinutes / 60);
     if (diffInHours < 24) {
-      return `${diffInHours} hour${diffInHours > 1 ? 's' : ''} ago`;
+      return `${diffInHours} hour${diffInHours > 1 ? "s" : ""} ago`;
     }
-    
+
     const diffInDays = Math.floor(diffInHours / 24);
-    return `${diffInDays} day${diffInDays > 1 ? 's' : ''} ago`;
+    return `${diffInDays} day${diffInDays > 1 ? "s" : ""} ago`;
   };
 
   return (
@@ -109,13 +111,15 @@ export default function Dashboard() {
           <h2 className="text-xl font-semibold mb-4 text-black flex justify-center pt-4">
             Your Babb Games
           </h2>
-          
+
           {loading ? (
             <p className="text-center py-4 text-black">Loading games...</p>
           ) : error ? (
             <p className="text-center text-red-500 py-4">{error}</p>
           ) : userGames.length === 0 ? (
-            <p className="text-center py-4 text-black">You are not part of any games yet.</p>
+            <p className="text-center py-4 text-black">
+              You are not part of any games yet.
+            </p>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               {userGames.map((game) => (
@@ -140,8 +144,12 @@ export default function Dashboard() {
                     </span>
                   </div>
                   <div className="space-y-0.5 text-xs">
-                    <p className="text-black">Code: <span className="font-bold">{game.code}</span></p>
-                    <p className="text-black">Players: {game.currentPlayers}/{game.players}</p>
+                    <p className="text-black">
+                      Code: <span className="font-bold">{game.code}</span>
+                    </p>
+                    <p className="text-black">
+                      Players: {game.currentPlayers}/{game.players}
+                    </p>
                     <p className="text-black">
                       Last updated: {formatLastUpdated(game.lastUpdated)}
                     </p>
@@ -176,11 +184,15 @@ export default function Dashboard() {
           <h2 className="text-xl font-semibold mb-4 text-black flex justify-center pt-4">
             Available Babb Stores
           </h2>
-          
+
           {loading ? (
-            <p className="text-center py-4 text-black">Loading available games...</p>
+            <p className="text-center py-4 text-black">
+              Loading available games...
+            </p>
           ) : availableGames.length === 0 ? (
-            <p className="text-center py-4 text-black">No available games to join at the moment.</p>
+            <p className="text-center py-4 text-black">
+              No available games to join at the moment.
+            </p>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
               {availableGames.map((game) => (
@@ -197,11 +209,13 @@ export default function Dashboard() {
                     </span>
                   </div>
                   <div className="space-y-0.5 text-xs">
-                    <p className="text-black">Code: <span className="font-bold">{game.code}</span></p>
-                    <p className="text-black">Players: {game.currentPlayers}/{game.players}</p>
                     <p className="text-black">
-                      Created by: {game.createdBy}
+                      Code: <span className="font-bold">{game.code}</span>
                     </p>
+                    <p className="text-black">
+                      Players: {game.currentPlayers}/{game.players}
+                    </p>
+                    <p className="text-black">Created by: {game.createdBy}</p>
                   </div>
                   <div className="flex gap-1 mt-2">
                     <Link
@@ -221,7 +235,7 @@ export default function Dashboard() {
               ))}
             </div>
           )}
-          
+
           {/* Store images in lower section only when no available games or in addition to games */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {/* Store Window 1 */}

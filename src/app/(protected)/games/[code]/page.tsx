@@ -7,6 +7,6 @@ export default function GamePage() {
   // Use the useParams hook to get the code parameter
   const params = useParams();
   const code = params.code as string;
-  
+
   return <GameDetails code={code} />;
 }

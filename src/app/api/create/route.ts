@@ -6,5 +6,5 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   // Redirect to the main API route
-  return NextResponse.redirect(new URL('/api/games', request.url));
+  return NextResponse.redirect(new URL("/api/games", request.url));
 }
