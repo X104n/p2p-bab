@@ -213,7 +213,7 @@ export default function GameDetails({ code }: GameDetailsProps) {
           {isParticipant &&
             (game.status === "Active" || game.status === "Your turn") && (
               <button
-                onClick={() => router.push(`/map/${code}`)}
+                onClick={() => router.push(`/map`)}
                 className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
               >
                 Play Game
