@@ -17,7 +17,7 @@ const RANKS = [
   "Expert",
   "Master",
   "Champion",
-  "Legend"
+  "Legend",
 ];
 
 // Dummy data - would come from a database in a real app
@@ -28,8 +28,8 @@ const userProfiles: Record<string, ProfileData> = {
     rankLevel: 1,
     wins: 3,
     winStreak: 0,
-    lostMoney: 500
-  }
+    lostMoney: 500,
+  },
 };
 
 // Add some sample profiles
@@ -38,7 +38,7 @@ userProfiles["John"] = {
   rankLevel: 4,
   wins: 24,
   winStreak: 7,
-  lostMoney: 15000
+  lostMoney: 15000,
 };
 
 userProfiles["Sarah"] = {
@@ -46,18 +46,18 @@ userProfiles["Sarah"] = {
   rankLevel: 5,
   wins: 42,
   winStreak: 12,
-  lostMoney: 8000
+  lostMoney: 8000,
 };
 
 export async function GET() {
   const user = await getUser();
-  
+
   if (!user) {
     return Response.json({ error: "Not authenticated" }, { status: 401 });
   }
-  
+
   // Return the user's profile data, or the default if not found
   const profileData = userProfiles[user] || userProfiles.default;
-  
+
   return Response.json(profileData);
 }
