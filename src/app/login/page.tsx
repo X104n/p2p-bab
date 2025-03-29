@@ -1,4 +1,4 @@
-import { Dashboard } from "@/components/dashboard";
+import { redirect } from "next/navigation";
 import { LoginForm } from "@/components/login-form";
 import { getUser } from "@/lib/session";
 
@@ -6,10 +6,15 @@ import { getUser } from "@/lib/session";
 const App = async () => {
   const user = await getUser();
 
-  // Render logic
+  // If user is already authenticated, redirect to dashboard
+  if (user) {
+    redirect("/dashboard");
+  }
+
+  // Only render login form if not authenticated
   return (
     <div className="app">
-      {user ? <Dashboard user={user} /> : <LoginForm />}
+      <LoginForm />
     </div>
   );
 };

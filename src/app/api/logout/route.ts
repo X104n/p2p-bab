@@ -1,12 +1,12 @@
 import { removeUser } from "@/lib/session";
 
 export async function POST() {
-    await removeUser();
+  await removeUser();
 
-    return new Response(null, {
-        status: 302,
-        headers: {
-            Location: "/",
-        },
-    });
+  return new Response(null, {
+    status: 302,
+    headers: {
+      Location: "/",
+    },
+  });
 }
