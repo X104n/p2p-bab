@@ -10,14 +10,13 @@ Flodsvin-v2
 
 # Idé
 
-Du er drita! Du er siste ståande soldat etter ein fuktig kveld, og nå lukter det kebab og kubbing. Diverre er du nærmast blakk og det er 3,5 veker til stipendet :( Du bestemmer deg for å sette alt på rødt og laste ned Bable Royale (TM)! 
+Du er drita! Du er siste ståande soldat etter ein fuktig kveld, og nå lukter det kebab og kubbing. Diverre er du nærmast blakk og det er 3,5 veker til stipendet :( Du bestemmer deg for å sette alt på rødt og laste ned Bable Royale (TM)!
 
-Du logger inn og blir med i eit game med 9 andre Brødre i Brisen (TM). Du, og alle andre, betalar inn 10kr (100kr er prisen på babben) og spillet startar! Har du kasta vekk dine siste mynter på ein annan manns babb, eller har du gjort tidenes invistering? Det er opp til deg og vår herre og frelser Jesus kristus. 
+Du logger inn og blir med i eit game med 9 andre Brødre i Brisen (TM). Du, og alle andre, betalar inn 10kr (100kr er prisen på babben) og spillet startar! Har du kasta vekk dine siste mynter på ein annan manns babb, eller har du gjort tidenes invistering? Det er opp til deg og vår herre og frelser Jesus kristus.
 
 Du veit ikkje kvar du har kjøpt babb eller kvar du skal gå, men utviklarane har velsigna deg med eit kart som vert oppdatert kvart 10. minutt. Kartet visar ingenting anna enn posisjonen din relativt til tidlegare posisjonar. Når posisjonen vert oppdatert får du ein enkel beskjed: om du er nærmare eller lenger vekke. Du er sulten og desperat, og etter 50 minutt når du babberiet (TM), får ein kode og får utlevert babben! Alle andre går heim utan noko, medan du vaknar neste dag med tørr kjeft og smaken av gamal babb.
 
-Dette blir rutine for deg, og over månadar og år vinner du meir og meir. Du ranker opp frå Rookie til Expert til Master til Babbchamp til Babbmonark til ultimate-babber(TM). Gratulerer kamerat ;) 
-
+Dette blir rutine for deg, og over månadar og år vinner du meir og meir. Du ranker opp frå Rookie til Expert til Master til Babbchamp til Babbmonark til ultimate-babber(TM). Gratulerer kamerat ;)
 
 ## Implementasjon
 
