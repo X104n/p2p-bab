@@ -30,9 +30,6 @@ Dette blir rutine for deg, og over månadar og år vinner du meir og meir. Du ra
 
 Me har lagd ein web-applikasjon med NextJs. Designet er sikta på vår målgruppe, og skal inspirere og provosere. Ingen vibe-coding, berre vibe coding.
 
-
-
-
 ## Getting Started
 
 First, run the development server:
