@@ -1,4 +1,4 @@
-further devleopment -> [https://github.com/Badeklubben/babb-games](https://github.com/Badeklubben/babb-games)
+Videre utvikling -> [https://github.com/Badeklubben/babb-games](https://github.com/Badeklubben/babb-games)
 
 # Gruppenavn
 
